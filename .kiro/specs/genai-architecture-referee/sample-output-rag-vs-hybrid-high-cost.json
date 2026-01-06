@@ -1,0 +1,234 @@
+{
+  "metadata": {
+    "timestamp": "2026-01-06T10:30:00Z",
+    "constraints": {
+      "dataChangeFrequency": "high",
+      "accuracyRequirement": "critical",
+      "costSensitivity": "high"
+    },
+    "architecturePair": ["RAG", "Hybrid"]
+  },
+  "scoreComparison": {
+    "RAG": {
+      "totalScore": 6.45,
+      "dimensionScores": {
+        "Data Freshness": {
+          "rawScore": 8,
+          "weight": 0.10,
+          "weightedScore": 0.80
+        },
+        "Accuracy & Hallucination Control": {
+          "rawScore": 6,
+          "weight": 0.15,
+          "weightedScore": 0.90
+        },
+        "Latency": {
+          "rawScore": 7,
+          "weight": 0.10,
+          "weightedScore": 0.70
+        },
+        "Cost Efficiency": {
+          "rawScore": 7,
+          "weight": 0.25,
+          "weightedScore": 1.75
+        },
+        "Governance & Auditability": {
+          "rawScore": 5,
+          "weight": 0.15,
+          "weightedScore": 0.75
+        },
+        "Workflow Complexity": {
+          "rawScore": 8,
+          "weight": 0.15,
+          "weightedScore": 1.20
+        },
+        "Team & Ops Readiness": {
+          "rawScore": 7,
+          "weight": 0.10,
+          "weightedScore": 0.70
+        }
+      }
+    },
+    "Hybrid": {
+      "totalScore": 5.70,
+      "dimensionScores": {
+        "Data Freshness": {
+          "rawScore": 8,
+          "weight": 0.10,
+          "weightedScore": 0.80
+        },
+        "Accuracy & Hallucination Control": {
+          "rawScore": 8,
+          "weight": 0.15,
+          "weightedScore": 1.20
+        },
+        "Latency": {
+          "rawScore": 5,
+          "weight": 0.10,
+          "weightedScore": 0.50
+        },
+        "Cost Efficiency": {
+          "rawScore": 4,
+          "weight": 0.25,
+          "weightedScore": 1.00
+        },
+        "Governance & Auditability": {
+          "rawScore": 7,
+          "weight": 0.15,
+          "weightedScore": 1.05
+        },
+        "Workflow Complexity": {
+          "rawScore": 4,
+          "weight": 0.15,
+          "weightedScore": 0.60
+        },
+        "Team & Ops Readiness": {
+          "rawScore": 5,
+          "weight": 0.10,
+          "weightedScore": 0.50
+        }
+      }
+    },
+    "scoreDifference": 0.75
+  },
+  "explanation": {
+    "summary": "RAG and Hybrid differ by 0.75 total points under high cost sensitivity. This divergence stems primarily from differences in the Cost Efficiency dimension, where constraint weighting amplifies the impact of architectural cost structures.",
+    "dimensionComparisons": [
+      {
+        "dimension": "Cost Efficiency",
+        "weight": 0.25,
+        "RAG_score": 7,
+        "Hybrid_score": 4,
+        "rawDelta": 3,
+        "weightedDelta": 0.75,
+        "description": "Under high cost sensitivity, the Cost Efficiency dimension receives increased weight (0.25 compared to 0.125 in balanced scenarios). RAG scores 7/10 in this dimension, reflecting per-query costs that include vector database retrieval and single LLM inference calls. Hybrid scores 4/10, reflecting higher per-query costs that include vector database retrieval, multiple LLM inference calls for agent reasoning, orchestration overhead, and tool/function calling expenses. This 3-point raw difference translates to 0.75 weighted points, accounting for the entire total score gap between the architectures."
+      },
+      {
+        "dimension": "Accuracy & Hallucination Control",
+        "weight": 0.15,
+        "RAG_score": 6,
+        "Hybrid_score": 8,
+        "rawDelta": -2,
+        "weightedDelta": -0.30,
+        "description": "Hybrid scores 2 points higher in Accuracy & Hallucination Control (8/10 vs 6/10). Hybrid architectures incorporate agent-based verification steps and multi-stage reasoning, which can reduce hallucinations through cross-checking mechanisms. RAG architectures rely on retrieval quality and single-pass generation. This difference contributes 0.30 weighted points in Hybrid's favor, partially offsetting the cost efficiency gap."
+      },
+      {
+        "dimension": "Governance & Auditability",
+        "weight": 0.15,
+        "RAG_score": 5,
+        "Hybrid_score": 7,
+        "rawDelta": -2,
+        "weightedDelta": -0.30,
+        "description": "Hybrid scores 2 points higher in Governance & Auditability (7/10 vs 5/10). Agent-based architectures generate detailed execution traces showing reasoning steps, tool calls, and decision points. RAG architectures provide retrieval logs and generation outputs but lack intermediate reasoning visibility. This difference contributes 0.30 weighted points in Hybrid's favor."
+      },
+      {
+        "dimension": "Workflow Complexity",
+        "weight": 0.15,
+        "RAG_score": 8,
+        "Hybrid_score": 4,
+        "rawDelta": 4,
+        "weightedDelta": 0.60,
+        "description": "RAG scores 4 points higher in Workflow Complexity (8/10 vs 4/10), where higher scores indicate lower complexity. RAG architectures follow a linear retrieve-then-generate pattern. Hybrid architectures require orchestration logic, agent prompt engineering, tool integration, and multi-step coordination. This difference contributes 0.60 weighted points in RAG's favor."
+      },
+      {
+        "dimension": "Latency",
+        "weight": 0.10,
+        "RAG_score": 7,
+        "Hybrid_score": 5,
+        "rawDelta": 2,
+        "weightedDelta": 0.20,
+        "description": "RAG scores 2 points higher in Latency (7/10 vs 5/10). RAG architectures complete requests in a single retrieval-generation cycle. Hybrid architectures may require multiple sequential LLM calls as agents reason through problems, increasing end-to-end latency. This difference contributes 0.20 weighted points in RAG's favor."
+      },
+      {
+        "dimension": "Team & Ops Readiness",
+        "weight": 0.10,
+        "RAG_score": 7,
+        "Hybrid_score": 5,
+        "rawDelta": 2,
+        "weightedDelta": 0.20,
+        "description": "RAG scores 2 points higher in Team & Ops Readiness (7/10 vs 5/10). RAG architectures align with familiar patterns (search + generation) and have established operational practices. Hybrid architectures require expertise in agent design, prompt engineering for reasoning, and debugging multi-step workflows. This difference contributes 0.20 weighted points in RAG's favor."
+      },
+      {
+        "dimension": "Data Freshness",
+        "weight": 0.10,
+        "RAG_score": 8,
+        "Hybrid_score": 8,
+        "rawDelta": 0,
+        "weightedDelta": 0.00,
+        "description": "Both architectures score identically (8/10) in Data Freshness. Both can query updated vector stores or knowledge bases at runtime, providing access to recently indexed information without model retraining."
+      }
+    ],
+    "tradeoffAnalysis": [
+      {
+        "architecture": "RAG",
+        "gains": [
+          "Lower per-query costs through single LLM inference calls",
+          "Predictable cost structure with minimal orchestration overhead",
+          "Reduced workflow complexity with linear retrieve-generate pattern",
+          "Lower latency through single-pass execution",
+          "Lower operational complexity and team learning curve"
+        ],
+        "sacrifices": [
+          "Reduced accuracy control compared to multi-stage verification",
+          "Limited governance visibility into reasoning processes",
+          "Vector database operational and embedding generation costs"
+        ]
+      },
+      {
+        "architecture": "Hybrid",
+        "gains": [
+          "Enhanced accuracy through agent-based verification and multi-stage reasoning",
+          "Increased governance visibility with detailed execution traces",
+          "Support for complex workflows requiring tool use and multi-step reasoning"
+        ],
+        "sacrifices": [
+          "Higher per-query costs from multiple LLM calls and agent orchestration",
+          "Increased latency from sequential reasoning steps",
+          "Greater workflow complexity requiring agent design expertise",
+          "Higher operational complexity and steeper team learning curve"
+        ]
+      }
+    ],
+    "conditionalGuidance": [
+      {
+        "condition": "IF cost per query is a primary constraint",
+        "architecture": "RAG",
+        "characteristic": "RAG exhibits lower per-query expenses through single-pass generation, with costs concentrated in retrieval and one LLM inference call"
+      },
+      {
+        "condition": "IF cost per query is a primary constraint",
+        "architecture": "Hybrid",
+        "characteristic": "Hybrid incurs higher per-query expenses through multi-step agent execution, with costs accumulating across reasoning iterations and tool calls"
+      },
+      {
+        "condition": "IF accuracy and hallucination control are critical",
+        "architecture": "Hybrid",
+        "characteristic": "Hybrid demonstrates higher accuracy scores through agent verification mechanisms that cross-check outputs across multiple reasoning steps"
+      },
+      {
+        "condition": "IF accuracy and hallucination control are critical",
+        "architecture": "RAG",
+        "characteristic": "RAG demonstrates moderate accuracy dependent on retrieval quality and single-pass generation without verification loops"
+      },
+      {
+        "condition": "IF operational simplicity is valued",
+        "architecture": "RAG",
+        "characteristic": "RAG requires less specialized expertise, following established retrieve-generate patterns with lower debugging complexity"
+      },
+      {
+        "condition": "IF governance and auditability are required",
+        "architecture": "Hybrid",
+        "characteristic": "Hybrid provides detailed execution traces showing agent reasoning steps, tool invocations, and decision points for audit purposes"
+      },
+      {
+        "condition": "IF response time is latency-sensitive",
+        "architecture": "RAG",
+        "characteristic": "RAG completes requests in a single cycle, avoiding the sequential delays of multi-step agent reasoning"
+      }
+    ],
+    "weightingContext": {
+      "appliedConstraint": "high cost sensitivity",
+      "effect": "Under high cost sensitivity, the Cost Efficiency dimension weight increases from 0.125 (balanced) to 0.25, doubling its influence on total scores. This amplifies cost-related differences between architectures. RAG's 3-point advantage in Cost Efficiency (7 vs 4) translates to 0.75 weighted points, which equals the entire score gap. Without this weighting adjustment, the architectures would score more similarly, with Hybrid's accuracy and governance advantages offsetting RAG's cost and complexity advantages."
+    }
+  }
+}
