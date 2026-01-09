@@ -1,0 +1,1296 @@
+{
+  "metadata": {
+    "timestamp": "2026-01-09T07:23:08.790Z",
+    "constraints": {
+      "dataChangeFrequency": "high",
+      "accuracyRequirement": "critical",
+      "costSensitivity": "high"
+    },
+    "architecturesEvaluated": [
+      "RAG",
+      "Fine-Tuned",
+      "Agentic",
+      "Hybrid"
+    ]
+  },
+  "evaluations": [
+    {
+      "architecture": "RAG",
+      "dimensionScores": [
+        {
+          "dimension": "Data Freshness",
+          "rawScore": 8,
+          "weight": 0.1,
+          "weightedScore": 0.8,
+          "rationale": "RAG queries updated vector stores at runtime, providing access to recently indexed information without model retraining"
+        },
+        {
+          "dimension": "Accuracy & Hallucination Control",
+          "rawScore": 6,
+          "weight": 0.15,
+          "weightedScore": 0.8999999999999999,
+          "rationale": "RAG grounds responses in retrieved documents, reducing hallucinations compared to pure generation, but lacks multi-stage verification"
+        },
+        {
+          "dimension": "Latency",
+          "rawScore": 7,
+          "weight": 0.1,
+          "weightedScore": 0.7000000000000001,
+          "rationale": "RAG completes requests in a single retrieval-generation cycle with predictable latency"
+        },
+        {
+          "dimension": "Cost Efficiency",
+          "rawScore": 7,
+          "weight": 0.25,
+          "weightedScore": 1.75,
+          "rationale": "Single LLM call per query with retrieval overhead"
+        },
+        {
+          "dimension": "Governance & Auditability",
+          "rawScore": 5,
+          "weight": 0.15,
+          "weightedScore": 0.75,
+          "rationale": "RAG provides retrieval logs and generation outputs but lacks intermediate reasoning visibility"
+        },
+        {
+          "dimension": "Workflow Complexity",
+          "rawScore": 8,
+          "weight": 0.15,
+          "weightedScore": 1.2,
+          "rationale": "RAG follows a linear retrieve-then-generate pattern with established tooling"
+        },
+        {
+          "dimension": "Team & Ops Readiness",
+          "rawScore": 7,
+          "weight": 0.1,
+          "weightedScore": 0.7000000000000001,
+          "rationale": "RAG aligns with familiar search-then-generate patterns and has established operational practices"
+        }
+      ],
+      "totalScore": 6.800000000000001
+    },
+    {
+      "architecture": "Fine-Tuned",
+      "dimensionScores": [
+        {
+          "dimension": "Data Freshness",
+          "rawScore": 3,
+          "weight": 0.1,
+          "weightedScore": 0.30000000000000004,
+          "rationale": "Fine-tuned models require retraining to incorporate new information, limiting data freshness"
+        },
+        {
+          "dimension": "Accuracy & Hallucination Control",
+          "rawScore": 7,
+          "weight": 0.15,
+          "weightedScore": 1.05,
+          "rationale": "Fine-tuning can improve accuracy for specific domains but may increase hallucination risk without grounding"
+        },
+        {
+          "dimension": "Latency",
+          "rawScore": 9,
+          "weight": 0.1,
+          "weightedScore": 0.9,
+          "rationale": "Fine-tuned models provide fastest response times with no retrieval or agent overhead"
+        },
+        {
+          "dimension": "Cost Efficiency",
+          "rawScore": 6,
+          "weight": 0.25,
+          "weightedScore": 1.5,
+          "rationale": "No retrieval or agent costs, but training and hosting expenses"
+        },
+        {
+          "dimension": "Governance & Auditability",
+          "rawScore": 3,
+          "weight": 0.15,
+          "weightedScore": 0.44999999999999996,
+          "rationale": "Fine-tuned models provide minimal visibility into reasoning or knowledge sources"
+        },
+        {
+          "dimension": "Workflow Complexity",
+          "rawScore": 6,
+          "weight": 0.15,
+          "weightedScore": 0.8999999999999999,
+          "rationale": "Fine-tuning requires training pipeline but simpler inference workflow"
+        },
+        {
+          "dimension": "Team & Ops Readiness",
+          "rawScore": 5,
+          "weight": 0.1,
+          "weightedScore": 0.5,
+          "rationale": "Fine-tuning requires ML expertise for training but simpler deployment"
+        }
+      ],
+      "totalScore": 5.6
+    },
+    {
+      "architecture": "Agentic",
+      "dimensionScores": [
+        {
+          "dimension": "Data Freshness",
+          "rawScore": 9,
+          "weight": 0.1,
+          "weightedScore": 0.9,
+          "rationale": "Agentic systems can query live APIs and databases, providing real-time information access"
+        },
+        {
+          "dimension": "Accuracy & Hallucination Control",
+          "rawScore": 7,
+          "weight": 0.15,
+          "weightedScore": 1.05,
+          "rationale": "Agents can verify information through multiple sources and self-correction, but complex reasoning may introduce errors"
+        },
+        {
+          "dimension": "Latency",
+          "rawScore": 4,
+          "weight": 0.1,
+          "weightedScore": 0.4,
+          "rationale": "Agentic systems may require many sequential steps and tool calls, resulting in high latency"
+        },
+        {
+          "dimension": "Cost Efficiency",
+          "rawScore": 3,
+          "weight": 0.25,
+          "weightedScore": 0.75,
+          "rationale": "Highest costs due to multiple LLM calls, tool executions, and potential retry loops"
+        },
+        {
+          "dimension": "Governance & Auditability",
+          "rawScore": 8,
+          "weight": 0.15,
+          "weightedScore": 1.2,
+          "rationale": "Agentic systems provide comprehensive execution traces with all reasoning steps and tool calls"
+        },
+        {
+          "dimension": "Workflow Complexity",
+          "rawScore": 3,
+          "weight": 0.15,
+          "weightedScore": 0.44999999999999996,
+          "rationale": "Agentic systems are most complex, requiring agent design, tool integration, and orchestration logic"
+        },
+        {
+          "dimension": "Team & Ops Readiness",
+          "rawScore": 4,
+          "weight": 0.1,
+          "weightedScore": 0.4,
+          "rationale": "Agentic systems require specialized expertise in agent design, tool integration, and complex debugging"
+        }
+      ],
+      "totalScore": 5.15
+    },
+    {
+      "architecture": "Hybrid",
+      "dimensionScores": [
+        {
+          "dimension": "Data Freshness",
+          "rawScore": 8,
+          "weight": 0.1,
+          "weightedScore": 0.8,
+          "rationale": "Hybrid architectures can query updated vector stores and knowledge bases at runtime, similar to RAG"
+        },
+        {
+          "dimension": "Accuracy & Hallucination Control",
+          "rawScore": 8,
+          "weight": 0.15,
+          "weightedScore": 1.2,
+          "rationale": "Hybrid architectures incorporate agent-based verification steps and multi-stage reasoning, reducing hallucinations through cross-checking"
+        },
+        {
+          "dimension": "Latency",
+          "rawScore": 5,
+          "weight": 0.1,
+          "weightedScore": 0.5,
+          "rationale": "Hybrid architectures require multiple sequential LLM calls as agents reason through problems, increasing end-to-end latency"
+        },
+        {
+          "dimension": "Cost Efficiency",
+          "rawScore": 4,
+          "weight": 0.25,
+          "weightedScore": 1,
+          "rationale": "Multiple LLM calls, agent orchestration, plus retrieval"
+        },
+        {
+          "dimension": "Governance & Auditability",
+          "rawScore": 7,
+          "weight": 0.15,
+          "weightedScore": 1.05,
+          "rationale": "Agent-based architectures generate detailed execution traces showing reasoning steps, tool calls, and decision points"
+        },
+        {
+          "dimension": "Workflow Complexity",
+          "rawScore": 4,
+          "weight": 0.15,
+          "weightedScore": 0.6,
+          "rationale": "Hybrid architectures require orchestration logic, agent prompt engineering, tool integration, and multi-step coordination"
+        },
+        {
+          "dimension": "Team & Ops Readiness",
+          "rawScore": 5,
+          "weight": 0.1,
+          "weightedScore": 0.5,
+          "rationale": "Hybrid architectures require expertise in agent design, prompt engineering for reasoning, and debugging multi-step workflows"
+        }
+      ],
+      "totalScore": 5.6499999999999995
+    }
+  ],
+  "pairwiseExplanations": [
+    {
+      "architecturePair": [
+        "RAG",
+        "Fine-Tuned"
+      ],
+      "explanation": {
+        "summary": "RAG and Fine-Tuned differ by 1.20 total points under the provided constraints. This divergence stems primarily from differences in dimension scores where constraint weighting amplifies the impact of architectural characteristics.",
+        "dimensionComparisons": [
+          {
+            "dimension": "Data Freshness",
+            "weight": 0.1,
+            "architecture1Score": 8,
+            "architecture2Score": 3,
+            "delta": 5,
+            "description": "RAG scores 5 points higher in Data Freshness (8/10 vs 3/10). RAG rAG queries updated vector stores at runtime, providing access to recently indexed information without model retraining. Fine-Tuned fine-tuned models require retraining to incorporate new information, limiting data freshness. This difference contributes 0.50 weighted points in RAG's favor."
+          },
+          {
+            "dimension": "Latency",
+            "weight": 0.1,
+            "architecture1Score": 7,
+            "architecture2Score": 9,
+            "delta": -2,
+            "description": "Fine-Tuned scores 2 points higher in Latency (9/10 vs 7/10). Fine-Tuned fine-tuned models provide fastest response times with no retrieval or agent overhead. RAG rAG completes requests in a single retrieval-generation cycle with predictable latency. This difference contributes 0.20 weighted points in Fine-Tuned's favor."
+          },
+          {
+            "dimension": "Governance & Auditability",
+            "weight": 0.15,
+            "architecture1Score": 5,
+            "architecture2Score": 3,
+            "delta": 2,
+            "description": "RAG scores 2 points higher in Governance & Auditability (5/10 vs 3/10). RAG rAG provides retrieval logs and generation outputs but lacks intermediate reasoning visibility. Fine-Tuned fine-tuned models provide minimal visibility into reasoning or knowledge sources. This difference contributes 0.30 weighted points in RAG's favor."
+          },
+          {
+            "dimension": "Workflow Complexity",
+            "weight": 0.15,
+            "architecture1Score": 8,
+            "architecture2Score": 6,
+            "delta": 2,
+            "description": "RAG scores 2 points higher in Workflow Complexity (8/10 vs 6/10). RAG rAG follows a linear retrieve-then-generate pattern with established tooling. Fine-Tuned fine-tuning requires training pipeline but simpler inference workflow. This difference contributes 0.30 weighted points in RAG's favor."
+          },
+          {
+            "dimension": "Team & Ops Readiness",
+            "weight": 0.1,
+            "architecture1Score": 7,
+            "architecture2Score": 5,
+            "delta": 2,
+            "description": "RAG scores 2 points higher in Team & Ops Readiness (7/10 vs 5/10). RAG rAG aligns with familiar search-then-generate patterns and has established operational practices. Fine-Tuned fine-tuning requires ML expertise for training but simpler deployment. This difference contributes 0.20 weighted points in RAG's favor."
+          }
+        ],
+        "tradeoffAnalysis": [
+          {
+            "architecture": "RAG",
+            "gains": [
+              "Real-time access to updated knowledge bases",
+              "No retraining required for new information",
+              "Grounded in retrieved source documents",
+              "Reduces pure hallucination",
+              "Single-pass execution",
+              "Predictable response times",
+              "Predictable per-query costs",
+              "No agent orchestration overhead",
+              "Single LLM inference call",
+              "Source document traceability",
+              "Retrieval logs available",
+              "Linear workflow pattern",
+              "Well-established tooling",
+              "Straightforward debugging",
+              "Familiar search paradigm",
+              "Established best practices",
+              "Lower learning curve"
+            ],
+            "sacrifices": [
+              "Dependent on vector store update frequency",
+              "Embedding generation latency for new documents",
+              "Single-pass generation without verification",
+              "Quality dependent on retrieval accuracy",
+              "No cross-checking mechanisms",
+              "Vector search adds overhead vs pure generation",
+              "Retrieval latency varies with index size",
+              "Vector DB operational costs",
+              "Embedding generation costs",
+              "Storage costs for vector indices",
+              "Limited reasoning process visibility",
+              "No intermediate decision points to audit",
+              "Vector store management required",
+              "Embedding pipeline maintenance",
+              "Vector DB operational expertise needed",
+              "Embedding model management"
+            ]
+          },
+          {
+            "architecture": "Fine-Tuned",
+            "gains": [
+              "Knowledge baked into model weights",
+              "No runtime retrieval needed",
+              "Domain-specific accuracy improvements",
+              "Consistent output style",
+              "Task-specific optimization",
+              "Lowest latency",
+              "No retrieval overhead",
+              "No multi-step reasoning delays",
+              "No retrieval infrastructure costs",
+              "No agent orchestration overhead",
+              "Predictable inference costs",
+              "Consistent behavior",
+              "Reproducible outputs",
+              "Simple inference workflow",
+              "No runtime orchestration",
+              "Standard ML deployment patterns",
+              "No agent expertise needed"
+            ],
+            "sacrifices": [
+              "Retraining required for updates",
+              "Knowledge cutoff at training time",
+              "Expensive to keep current",
+              "No grounding in external sources",
+              "Potential for confident hallucinations",
+              "Difficult to update incorrect knowledge",
+              "Model size may impact inference speed",
+              "High upfront training costs",
+              "Retraining costs for updates",
+              "Model hosting costs",
+              "Black box reasoning",
+              "No source traceability",
+              "Difficult to audit knowledge",
+              "Training pipeline complexity",
+              "Data preparation overhead",
+              "Model versioning challenges",
+              "ML training expertise required",
+              "Data curation skills needed",
+              "Model evaluation complexity"
+            ]
+          }
+        ],
+        "conditionalGuidance": [
+          {
+            "condition": "IF cost per query is a primary constraint",
+            "architecture": "RAG",
+            "characteristic": "RAG single LLM call per query with retrieval overhead"
+          },
+          {
+            "condition": "IF accuracy and hallucination control are critical",
+            "architecture": "RAG",
+            "characteristic": "RAG rAG grounds responses in retrieved documents, reducing hallucinations compared to pure generation, but lacks multi-stage verification"
+          },
+          {
+            "condition": "IF operational simplicity is valued",
+            "architecture": "RAG",
+            "characteristic": "RAG rAG follows a linear retrieve-then-generate pattern with established tooling"
+          },
+          {
+            "condition": "IF response time is latency-sensitive",
+            "architecture": "RAG",
+            "characteristic": "RAG rAG completes requests in a single retrieval-generation cycle with predictable latency"
+          },
+          {
+            "condition": "IF cost per query is a primary constraint",
+            "architecture": "Fine-Tuned",
+            "characteristic": "Fine-Tuned no retrieval or agent costs, but training and hosting expenses"
+          },
+          {
+            "condition": "IF accuracy and hallucination control are critical",
+            "architecture": "Fine-Tuned",
+            "characteristic": "Fine-Tuned fine-tuning can improve accuracy for specific domains but may increase hallucination risk without grounding"
+          },
+          {
+            "condition": "IF response time is latency-sensitive",
+            "architecture": "Fine-Tuned",
+            "characteristic": "Fine-Tuned fine-tuned models provide fastest response times with no retrieval or agent overhead"
+          }
+        ]
+      }
+    },
+    {
+      "architecturePair": [
+        "RAG",
+        "Agentic"
+      ],
+      "explanation": {
+        "summary": "RAG and Agentic differ by 1.65 total points under the provided constraints. This divergence stems primarily from differences in dimension scores where constraint weighting amplifies the impact of architectural characteristics.",
+        "dimensionComparisons": [
+          {
+            "dimension": "Workflow Complexity",
+            "weight": 0.15,
+            "architecture1Score": 8,
+            "architecture2Score": 3,
+            "delta": 5,
+            "description": "RAG scores 5 points higher in Workflow Complexity (8/10 vs 3/10). RAG rAG follows a linear retrieve-then-generate pattern with established tooling. Agentic agentic systems are most complex, requiring agent design, tool integration, and orchestration logic. This difference contributes 0.75 weighted points in RAG's favor."
+          },
+          {
+            "dimension": "Cost Efficiency",
+            "weight": 0.25,
+            "architecture1Score": 7,
+            "architecture2Score": 3,
+            "delta": 4,
+            "description": "Under high cost sensitivity, the Cost Efficiency dimension receives increased weight (0.25). RAG scores 4 points higher in Cost Efficiency (7/10 vs 3/10). RAG single LLM call per query with retrieval overhead. Agentic highest costs due to multiple LLM calls, tool executions, and potential retry loops. This difference contributes 1.00 weighted points in RAG's favor."
+          },
+          {
+            "dimension": "Latency",
+            "weight": 0.1,
+            "architecture1Score": 7,
+            "architecture2Score": 4,
+            "delta": 3,
+            "description": "RAG scores 3 points higher in Latency (7/10 vs 4/10). RAG rAG completes requests in a single retrieval-generation cycle with predictable latency. Agentic agentic systems may require many sequential steps and tool calls, resulting in high latency. This difference contributes 0.30 weighted points in RAG's favor."
+          },
+          {
+            "dimension": "Governance & Auditability",
+            "weight": 0.15,
+            "architecture1Score": 5,
+            "architecture2Score": 8,
+            "delta": -3,
+            "description": "Agentic scores 3 points higher in Governance & Auditability (8/10 vs 5/10). Agentic agentic systems provide comprehensive execution traces with all reasoning steps and tool calls. RAG rAG provides retrieval logs and generation outputs but lacks intermediate reasoning visibility. This difference contributes 0.45 weighted points in Agentic's favor."
+          },
+          {
+            "dimension": "Team & Ops Readiness",
+            "weight": 0.1,
+            "architecture1Score": 7,
+            "architecture2Score": 4,
+            "delta": 3,
+            "description": "RAG scores 3 points higher in Team & Ops Readiness (7/10 vs 4/10). RAG rAG aligns with familiar search-then-generate patterns and has established operational practices. Agentic agentic systems require specialized expertise in agent design, tool integration, and complex debugging. This difference contributes 0.30 weighted points in RAG's favor."
+          }
+        ],
+        "tradeoffAnalysis": [
+          {
+            "architecture": "RAG",
+            "gains": [
+              "Real-time access to updated knowledge bases",
+              "No retraining required for new information",
+              "Grounded in retrieved source documents",
+              "Reduces pure hallucination",
+              "Single-pass execution",
+              "Predictable response times",
+              "Predictable per-query costs",
+              "No agent orchestration overhead",
+              "Single LLM inference call",
+              "Source document traceability",
+              "Retrieval logs available",
+              "Linear workflow pattern",
+              "Well-established tooling",
+              "Straightforward debugging",
+              "Familiar search paradigm",
+              "Established best practices",
+              "Lower learning curve"
+            ],
+            "sacrifices": [
+              "Dependent on vector store update frequency",
+              "Embedding generation latency for new documents",
+              "Single-pass generation without verification",
+              "Quality dependent on retrieval accuracy",
+              "No cross-checking mechanisms",
+              "Vector search adds overhead vs pure generation",
+              "Retrieval latency varies with index size",
+              "Vector DB operational costs",
+              "Embedding generation costs",
+              "Storage costs for vector indices",
+              "Limited reasoning process visibility",
+              "No intermediate decision points to audit",
+              "Vector store management required",
+              "Embedding pipeline maintenance",
+              "Vector DB operational expertise needed",
+              "Embedding model management"
+            ]
+          },
+          {
+            "architecture": "Agentic",
+            "gains": [
+              "Real-time data access",
+              "Live API integration",
+              "Most current information available",
+              "Multi-source verification",
+              "Self-correction capabilities",
+              "Can validate outputs",
+              "Thorough problem-solving",
+              "Can optimize for correctness",
+              "Can optimize for complex tasks",
+              "Flexible cost-accuracy trade-offs",
+              "Complete execution traces",
+              "Full reasoning visibility",
+              "Tool call logs",
+              "Decision audit trail",
+              "Maximum flexibility",
+              "Can handle complex workflows",
+              "Adaptive behavior",
+              "Cutting-edge capabilities",
+              "Growing framework ecosystem"
+            ],
+            "sacrifices": [
+              "Dependent on external API availability",
+              "API rate limits and costs",
+              "Agent reasoning errors possible",
+              "Complex workflows harder to validate",
+              "Tool selection errors",
+              "Multiple sequential LLM calls",
+              "Tool execution delays",
+              "Highly variable latency",
+              "Highest per-query costs",
+              "Many LLM inference calls",
+              "Tool API costs",
+              "Retry and error handling overhead",
+              "Very large trace volumes",
+              "Complex trace analysis required",
+              "Highest complexity",
+              "Difficult debugging",
+              "Many integration points",
+              "Unpredictable behavior",
+              "Highest learning curve",
+              "Specialized skills required",
+              "Limited established patterns",
+              "Complex operational requirements"
+            ]
+          }
+        ],
+        "conditionalGuidance": [
+          {
+            "condition": "IF cost per query is a primary constraint",
+            "architecture": "RAG",
+            "characteristic": "RAG single LLM call per query with retrieval overhead"
+          },
+          {
+            "condition": "IF accuracy and hallucination control are critical",
+            "architecture": "RAG",
+            "characteristic": "RAG rAG grounds responses in retrieved documents, reducing hallucinations compared to pure generation, but lacks multi-stage verification"
+          },
+          {
+            "condition": "IF operational simplicity is valued",
+            "architecture": "RAG",
+            "characteristic": "RAG rAG follows a linear retrieve-then-generate pattern with established tooling"
+          },
+          {
+            "condition": "IF response time is latency-sensitive",
+            "architecture": "RAG",
+            "characteristic": "RAG rAG completes requests in a single retrieval-generation cycle with predictable latency"
+          },
+          {
+            "condition": "IF cost per query is a primary constraint",
+            "architecture": "Agentic",
+            "characteristic": "Agentic highest costs due to multiple LLM calls, tool executions, and potential retry loops"
+          },
+          {
+            "condition": "IF accuracy and hallucination control are critical",
+            "architecture": "Agentic",
+            "characteristic": "Agentic agents can verify information through multiple sources and self-correction, but complex reasoning may introduce errors"
+          },
+          {
+            "condition": "IF governance and auditability are required",
+            "architecture": "Agentic",
+            "characteristic": "Agentic agentic systems provide comprehensive execution traces with all reasoning steps and tool calls"
+          }
+        ]
+      }
+    },
+    {
+      "architecturePair": [
+        "RAG",
+        "Hybrid"
+      ],
+      "explanation": {
+        "summary": "RAG and Hybrid differ by 1.15 total points under the provided constraints. This divergence stems primarily from differences in dimension scores where constraint weighting amplifies the impact of architectural characteristics.",
+        "dimensionComparisons": [
+          {
+            "dimension": "Workflow Complexity",
+            "weight": 0.15,
+            "architecture1Score": 8,
+            "architecture2Score": 4,
+            "delta": 4,
+            "description": "RAG scores 4 points higher in Workflow Complexity (8/10 vs 4/10). RAG rAG follows a linear retrieve-then-generate pattern with established tooling. Hybrid hybrid architectures require orchestration logic, agent prompt engineering, tool integration, and multi-step coordination. This difference contributes 0.60 weighted points in RAG's favor."
+          },
+          {
+            "dimension": "Cost Efficiency",
+            "weight": 0.25,
+            "architecture1Score": 7,
+            "architecture2Score": 4,
+            "delta": 3,
+            "description": "Under high cost sensitivity, the Cost Efficiency dimension receives increased weight (0.25). RAG scores 3 points higher in Cost Efficiency (7/10 vs 4/10). RAG single LLM call per query with retrieval overhead. Hybrid multiple LLM calls, agent orchestration, plus retrieval. This difference contributes 0.75 weighted points in RAG's favor."
+          },
+          {
+            "dimension": "Accuracy & Hallucination Control",
+            "weight": 0.15,
+            "architecture1Score": 6,
+            "architecture2Score": 8,
+            "delta": -2,
+            "description": "Hybrid scores 2 points higher in Accuracy & Hallucination Control (8/10 vs 6/10). Hybrid hybrid architectures incorporate agent-based verification steps and multi-stage reasoning, reducing hallucinations through cross-checking. RAG rAG grounds responses in retrieved documents, reducing hallucinations compared to pure generation, but lacks multi-stage verification. This difference contributes 0.30 weighted points in Hybrid's favor."
+          },
+          {
+            "dimension": "Latency",
+            "weight": 0.1,
+            "architecture1Score": 7,
+            "architecture2Score": 5,
+            "delta": 2,
+            "description": "RAG scores 2 points higher in Latency (7/10 vs 5/10). RAG rAG completes requests in a single retrieval-generation cycle with predictable latency. Hybrid hybrid architectures require multiple sequential LLM calls as agents reason through problems, increasing end-to-end latency. This difference contributes 0.20 weighted points in RAG's favor."
+          },
+          {
+            "dimension": "Governance & Auditability",
+            "weight": 0.15,
+            "architecture1Score": 5,
+            "architecture2Score": 7,
+            "delta": -2,
+            "description": "Hybrid scores 2 points higher in Governance & Auditability (7/10 vs 5/10). Hybrid agent-based architectures generate detailed execution traces showing reasoning steps, tool calls, and decision points. RAG rAG provides retrieval logs and generation outputs but lacks intermediate reasoning visibility. This difference contributes 0.30 weighted points in Hybrid's favor."
+          },
+          {
+            "dimension": "Team & Ops Readiness",
+            "weight": 0.1,
+            "architecture1Score": 7,
+            "architecture2Score": 5,
+            "delta": 2,
+            "description": "RAG scores 2 points higher in Team & Ops Readiness (7/10 vs 5/10). RAG rAG aligns with familiar search-then-generate patterns and has established operational practices. Hybrid hybrid architectures require expertise in agent design, prompt engineering for reasoning, and debugging multi-step workflows. This difference contributes 0.20 weighted points in RAG's favor."
+          }
+        ],
+        "tradeoffAnalysis": [
+          {
+            "architecture": "RAG",
+            "gains": [
+              "Real-time access to updated knowledge bases",
+              "No retraining required for new information",
+              "Grounded in retrieved source documents",
+              "Reduces pure hallucination",
+              "Single-pass execution",
+              "Predictable response times",
+              "Predictable per-query costs",
+              "No agent orchestration overhead",
+              "Single LLM inference call",
+              "Source document traceability",
+              "Retrieval logs available",
+              "Linear workflow pattern",
+              "Well-established tooling",
+              "Straightforward debugging",
+              "Familiar search paradigm",
+              "Established best practices",
+              "Lower learning curve"
+            ],
+            "sacrifices": [
+              "Dependent on vector store update frequency",
+              "Embedding generation latency for new documents",
+              "Single-pass generation without verification",
+              "Quality dependent on retrieval accuracy",
+              "No cross-checking mechanisms",
+              "Vector search adds overhead vs pure generation",
+              "Retrieval latency varies with index size",
+              "Vector DB operational costs",
+              "Embedding generation costs",
+              "Storage costs for vector indices",
+              "Limited reasoning process visibility",
+              "No intermediate decision points to audit",
+              "Vector store management required",
+              "Embedding pipeline maintenance",
+              "Vector DB operational expertise needed",
+              "Embedding model management"
+            ]
+          },
+          {
+            "architecture": "Hybrid",
+            "gains": [
+              "Real-time access to updated knowledge",
+              "Agent can verify information freshness",
+              "Multi-stage verification",
+              "Agent can cross-check outputs",
+              "Self-correction capabilities",
+              "Thorough reasoning process",
+              "Can optimize for accuracy over speed",
+              "Can optimize agent steps for complex workflows",
+              "Flexible cost-accuracy trade-offs",
+              "Detailed execution traces",
+              "Reasoning step visibility",
+              "Tool invocation logs",
+              "Decision point tracking",
+              "Support for complex workflows",
+              "Flexible tool integration",
+              "Adaptive reasoning",
+              "Powerful capabilities for complex tasks",
+              "Growing ecosystem of agent frameworks"
+            ],
+            "sacrifices": [
+              "Dependent on vector store update frequency",
+              "Additional complexity in agent tool integration",
+              "Increased complexity in verification logic",
+              "Potential for agent reasoning errors",
+              "Multiple sequential LLM calls",
+              "Variable latency based on reasoning depth",
+              "Tool execution overhead",
+              "Higher per-query costs",
+              "Multiple LLM inference calls",
+              "Agent orchestration overhead",
+              "Tool/function calling costs",
+              "Variable cost based on agent steps",
+              "Trace volume can be overwhelming",
+              "Requires trace analysis tooling",
+              "Agent design expertise required",
+              "Complex debugging",
+              "Orchestration logic maintenance",
+              "Tool integration overhead",
+              "Steeper learning curve",
+              "Agent debugging complexity",
+              "Specialized expertise required",
+              "Emerging best practices"
+            ]
+          }
+        ],
+        "conditionalGuidance": [
+          {
+            "condition": "IF cost per query is a primary constraint",
+            "architecture": "RAG",
+            "characteristic": "RAG single LLM call per query with retrieval overhead"
+          },
+          {
+            "condition": "IF accuracy and hallucination control are critical",
+            "architecture": "RAG",
+            "characteristic": "RAG rAG grounds responses in retrieved documents, reducing hallucinations compared to pure generation, but lacks multi-stage verification"
+          },
+          {
+            "condition": "IF operational simplicity is valued",
+            "architecture": "RAG",
+            "characteristic": "RAG rAG follows a linear retrieve-then-generate pattern with established tooling"
+          },
+          {
+            "condition": "IF response time is latency-sensitive",
+            "architecture": "RAG",
+            "characteristic": "RAG rAG completes requests in a single retrieval-generation cycle with predictable latency"
+          },
+          {
+            "condition": "IF cost per query is a primary constraint",
+            "architecture": "Hybrid",
+            "characteristic": "Hybrid multiple LLM calls, agent orchestration, plus retrieval"
+          },
+          {
+            "condition": "IF accuracy and hallucination control are critical",
+            "architecture": "Hybrid",
+            "characteristic": "Hybrid hybrid architectures incorporate agent-based verification steps and multi-stage reasoning, reducing hallucinations through cross-checking"
+          },
+          {
+            "condition": "IF governance and auditability are required",
+            "architecture": "Hybrid",
+            "characteristic": "Hybrid agent-based architectures generate detailed execution traces showing reasoning steps, tool calls, and decision points"
+          }
+        ]
+      }
+    },
+    {
+      "architecturePair": [
+        "Fine-Tuned",
+        "Agentic"
+      ],
+      "explanation": {
+        "summary": "Fine-Tuned and Agentic differ by 0.45 total points under the provided constraints. This divergence stems primarily from differences in dimension scores where constraint weighting amplifies the impact of architectural characteristics.",
+        "dimensionComparisons": [
+          {
+            "dimension": "Data Freshness",
+            "weight": 0.1,
+            "architecture1Score": 3,
+            "architecture2Score": 9,
+            "delta": -6,
+            "description": "Agentic scores 6 points higher in Data Freshness (9/10 vs 3/10). Agentic agentic systems can query live APIs and databases, providing real-time information access. Fine-Tuned fine-tuned models require retraining to incorporate new information, limiting data freshness. This difference contributes 0.60 weighted points in Agentic's favor."
+          },
+          {
+            "dimension": "Latency",
+            "weight": 0.1,
+            "architecture1Score": 9,
+            "architecture2Score": 4,
+            "delta": 5,
+            "description": "Fine-Tuned scores 5 points higher in Latency (9/10 vs 4/10). Fine-Tuned fine-tuned models provide fastest response times with no retrieval or agent overhead. Agentic agentic systems may require many sequential steps and tool calls, resulting in high latency. This difference contributes 0.50 weighted points in Fine-Tuned's favor."
+          },
+          {
+            "dimension": "Governance & Auditability",
+            "weight": 0.15,
+            "architecture1Score": 3,
+            "architecture2Score": 8,
+            "delta": -5,
+            "description": "Agentic scores 5 points higher in Governance & Auditability (8/10 vs 3/10). Agentic agentic systems provide comprehensive execution traces with all reasoning steps and tool calls. Fine-Tuned fine-tuned models provide minimal visibility into reasoning or knowledge sources. This difference contributes 0.75 weighted points in Agentic's favor."
+          },
+          {
+            "dimension": "Cost Efficiency",
+            "weight": 0.25,
+            "architecture1Score": 6,
+            "architecture2Score": 3,
+            "delta": 3,
+            "description": "Under high cost sensitivity, the Cost Efficiency dimension receives increased weight (0.25). Fine-Tuned scores 3 points higher in Cost Efficiency (6/10 vs 3/10). Fine-Tuned no retrieval or agent costs, but training and hosting expenses. Agentic highest costs due to multiple LLM calls, tool executions, and potential retry loops. This difference contributes 0.75 weighted points in Fine-Tuned's favor."
+          },
+          {
+            "dimension": "Workflow Complexity",
+            "weight": 0.15,
+            "architecture1Score": 6,
+            "architecture2Score": 3,
+            "delta": 3,
+            "description": "Fine-Tuned scores 3 points higher in Workflow Complexity (6/10 vs 3/10). Fine-Tuned fine-tuning requires training pipeline but simpler inference workflow. Agentic agentic systems are most complex, requiring agent design, tool integration, and orchestration logic. This difference contributes 0.45 weighted points in Fine-Tuned's favor."
+          }
+        ],
+        "tradeoffAnalysis": [
+          {
+            "architecture": "Fine-Tuned",
+            "gains": [
+              "Knowledge baked into model weights",
+              "No runtime retrieval needed",
+              "Domain-specific accuracy improvements",
+              "Consistent output style",
+              "Task-specific optimization",
+              "Lowest latency",
+              "No retrieval overhead",
+              "No multi-step reasoning delays",
+              "No retrieval infrastructure costs",
+              "No agent orchestration overhead",
+              "Predictable inference costs",
+              "Consistent behavior",
+              "Reproducible outputs",
+              "Simple inference workflow",
+              "No runtime orchestration",
+              "Standard ML deployment patterns",
+              "No agent expertise needed"
+            ],
+            "sacrifices": [
+              "Retraining required for updates",
+              "Knowledge cutoff at training time",
+              "Expensive to keep current",
+              "No grounding in external sources",
+              "Potential for confident hallucinations",
+              "Difficult to update incorrect knowledge",
+              "Model size may impact inference speed",
+              "High upfront training costs",
+              "Retraining costs for updates",
+              "Model hosting costs",
+              "Black box reasoning",
+              "No source traceability",
+              "Difficult to audit knowledge",
+              "Training pipeline complexity",
+              "Data preparation overhead",
+              "Model versioning challenges",
+              "ML training expertise required",
+              "Data curation skills needed",
+              "Model evaluation complexity"
+            ]
+          },
+          {
+            "architecture": "Agentic",
+            "gains": [
+              "Real-time data access",
+              "Live API integration",
+              "Most current information available",
+              "Multi-source verification",
+              "Self-correction capabilities",
+              "Can validate outputs",
+              "Thorough problem-solving",
+              "Can optimize for correctness",
+              "Can optimize for complex tasks",
+              "Flexible cost-accuracy trade-offs",
+              "Complete execution traces",
+              "Full reasoning visibility",
+              "Tool call logs",
+              "Decision audit trail",
+              "Maximum flexibility",
+              "Can handle complex workflows",
+              "Adaptive behavior",
+              "Cutting-edge capabilities",
+              "Growing framework ecosystem"
+            ],
+            "sacrifices": [
+              "Dependent on external API availability",
+              "API rate limits and costs",
+              "Agent reasoning errors possible",
+              "Complex workflows harder to validate",
+              "Tool selection errors",
+              "Multiple sequential LLM calls",
+              "Tool execution delays",
+              "Highly variable latency",
+              "Highest per-query costs",
+              "Many LLM inference calls",
+              "Tool API costs",
+              "Retry and error handling overhead",
+              "Very large trace volumes",
+              "Complex trace analysis required",
+              "Highest complexity",
+              "Difficult debugging",
+              "Many integration points",
+              "Unpredictable behavior",
+              "Highest learning curve",
+              "Specialized skills required",
+              "Limited established patterns",
+              "Complex operational requirements"
+            ]
+          }
+        ],
+        "conditionalGuidance": [
+          {
+            "condition": "IF cost per query is a primary constraint",
+            "architecture": "Fine-Tuned",
+            "characteristic": "Fine-Tuned no retrieval or agent costs, but training and hosting expenses"
+          },
+          {
+            "condition": "IF accuracy and hallucination control are critical",
+            "architecture": "Fine-Tuned",
+            "characteristic": "Fine-Tuned fine-tuning can improve accuracy for specific domains but may increase hallucination risk without grounding"
+          },
+          {
+            "condition": "IF response time is latency-sensitive",
+            "architecture": "Fine-Tuned",
+            "characteristic": "Fine-Tuned fine-tuned models provide fastest response times with no retrieval or agent overhead"
+          },
+          {
+            "condition": "IF cost per query is a primary constraint",
+            "architecture": "Agentic",
+            "characteristic": "Agentic highest costs due to multiple LLM calls, tool executions, and potential retry loops"
+          },
+          {
+            "condition": "IF accuracy and hallucination control are critical",
+            "architecture": "Agentic",
+            "characteristic": "Agentic agents can verify information through multiple sources and self-correction, but complex reasoning may introduce errors"
+          },
+          {
+            "condition": "IF governance and auditability are required",
+            "architecture": "Agentic",
+            "characteristic": "Agentic agentic systems provide comprehensive execution traces with all reasoning steps and tool calls"
+          }
+        ]
+      }
+    },
+    {
+      "architecturePair": [
+        "Fine-Tuned",
+        "Hybrid"
+      ],
+      "explanation": {
+        "summary": "Hybrid and Fine-Tuned differ by 0.05 total points under the provided constraints. This divergence stems primarily from differences in dimension scores where constraint weighting amplifies the impact of architectural characteristics.",
+        "dimensionComparisons": [
+          {
+            "dimension": "Data Freshness",
+            "weight": 0.1,
+            "architecture1Score": 3,
+            "architecture2Score": 8,
+            "delta": -5,
+            "description": "Hybrid scores 5 points higher in Data Freshness (8/10 vs 3/10). Hybrid hybrid architectures can query updated vector stores and knowledge bases at runtime, similar to RAG. Fine-Tuned fine-tuned models require retraining to incorporate new information, limiting data freshness. This difference contributes 0.50 weighted points in Hybrid's favor."
+          },
+          {
+            "dimension": "Latency",
+            "weight": 0.1,
+            "architecture1Score": 9,
+            "architecture2Score": 5,
+            "delta": 4,
+            "description": "Fine-Tuned scores 4 points higher in Latency (9/10 vs 5/10). Fine-Tuned fine-tuned models provide fastest response times with no retrieval or agent overhead. Hybrid hybrid architectures require multiple sequential LLM calls as agents reason through problems, increasing end-to-end latency. This difference contributes 0.40 weighted points in Fine-Tuned's favor."
+          },
+          {
+            "dimension": "Governance & Auditability",
+            "weight": 0.15,
+            "architecture1Score": 3,
+            "architecture2Score": 7,
+            "delta": -4,
+            "description": "Hybrid scores 4 points higher in Governance & Auditability (7/10 vs 3/10). Hybrid agent-based architectures generate detailed execution traces showing reasoning steps, tool calls, and decision points. Fine-Tuned fine-tuned models provide minimal visibility into reasoning or knowledge sources. This difference contributes 0.60 weighted points in Hybrid's favor."
+          },
+          {
+            "dimension": "Cost Efficiency",
+            "weight": 0.25,
+            "architecture1Score": 6,
+            "architecture2Score": 4,
+            "delta": 2,
+            "description": "Under high cost sensitivity, the Cost Efficiency dimension receives increased weight (0.25). Fine-Tuned scores 2 points higher in Cost Efficiency (6/10 vs 4/10). Fine-Tuned no retrieval or agent costs, but training and hosting expenses. Hybrid multiple LLM calls, agent orchestration, plus retrieval. This difference contributes 0.50 weighted points in Fine-Tuned's favor."
+          },
+          {
+            "dimension": "Workflow Complexity",
+            "weight": 0.15,
+            "architecture1Score": 6,
+            "architecture2Score": 4,
+            "delta": 2,
+            "description": "Fine-Tuned scores 2 points higher in Workflow Complexity (6/10 vs 4/10). Fine-Tuned fine-tuning requires training pipeline but simpler inference workflow. Hybrid hybrid architectures require orchestration logic, agent prompt engineering, tool integration, and multi-step coordination. This difference contributes 0.30 weighted points in Fine-Tuned's favor."
+          }
+        ],
+        "tradeoffAnalysis": [
+          {
+            "architecture": "Fine-Tuned",
+            "gains": [
+              "Knowledge baked into model weights",
+              "No runtime retrieval needed",
+              "Domain-specific accuracy improvements",
+              "Consistent output style",
+              "Task-specific optimization",
+              "Lowest latency",
+              "No retrieval overhead",
+              "No multi-step reasoning delays",
+              "No retrieval infrastructure costs",
+              "No agent orchestration overhead",
+              "Predictable inference costs",
+              "Consistent behavior",
+              "Reproducible outputs",
+              "Simple inference workflow",
+              "No runtime orchestration",
+              "Standard ML deployment patterns",
+              "No agent expertise needed"
+            ],
+            "sacrifices": [
+              "Retraining required for updates",
+              "Knowledge cutoff at training time",
+              "Expensive to keep current",
+              "No grounding in external sources",
+              "Potential for confident hallucinations",
+              "Difficult to update incorrect knowledge",
+              "Model size may impact inference speed",
+              "High upfront training costs",
+              "Retraining costs for updates",
+              "Model hosting costs",
+              "Black box reasoning",
+              "No source traceability",
+              "Difficult to audit knowledge",
+              "Training pipeline complexity",
+              "Data preparation overhead",
+              "Model versioning challenges",
+              "ML training expertise required",
+              "Data curation skills needed",
+              "Model evaluation complexity"
+            ]
+          },
+          {
+            "architecture": "Hybrid",
+            "gains": [
+              "Real-time access to updated knowledge",
+              "Agent can verify information freshness",
+              "Multi-stage verification",
+              "Agent can cross-check outputs",
+              "Self-correction capabilities",
+              "Thorough reasoning process",
+              "Can optimize for accuracy over speed",
+              "Can optimize agent steps for complex workflows",
+              "Flexible cost-accuracy trade-offs",
+              "Detailed execution traces",
+              "Reasoning step visibility",
+              "Tool invocation logs",
+              "Decision point tracking",
+              "Support for complex workflows",
+              "Flexible tool integration",
+              "Adaptive reasoning",
+              "Powerful capabilities for complex tasks",
+              "Growing ecosystem of agent frameworks"
+            ],
+            "sacrifices": [
+              "Dependent on vector store update frequency",
+              "Additional complexity in agent tool integration",
+              "Increased complexity in verification logic",
+              "Potential for agent reasoning errors",
+              "Multiple sequential LLM calls",
+              "Variable latency based on reasoning depth",
+              "Tool execution overhead",
+              "Higher per-query costs",
+              "Multiple LLM inference calls",
+              "Agent orchestration overhead",
+              "Tool/function calling costs",
+              "Variable cost based on agent steps",
+              "Trace volume can be overwhelming",
+              "Requires trace analysis tooling",
+              "Agent design expertise required",
+              "Complex debugging",
+              "Orchestration logic maintenance",
+              "Tool integration overhead",
+              "Steeper learning curve",
+              "Agent debugging complexity",
+              "Specialized expertise required",
+              "Emerging best practices"
+            ]
+          }
+        ],
+        "conditionalGuidance": [
+          {
+            "condition": "IF cost per query is a primary constraint",
+            "architecture": "Fine-Tuned",
+            "characteristic": "Fine-Tuned no retrieval or agent costs, but training and hosting expenses"
+          },
+          {
+            "condition": "IF accuracy and hallucination control are critical",
+            "architecture": "Fine-Tuned",
+            "characteristic": "Fine-Tuned fine-tuning can improve accuracy for specific domains but may increase hallucination risk without grounding"
+          },
+          {
+            "condition": "IF response time is latency-sensitive",
+            "architecture": "Fine-Tuned",
+            "characteristic": "Fine-Tuned fine-tuned models provide fastest response times with no retrieval or agent overhead"
+          },
+          {
+            "condition": "IF cost per query is a primary constraint",
+            "architecture": "Hybrid",
+            "characteristic": "Hybrid multiple LLM calls, agent orchestration, plus retrieval"
+          },
+          {
+            "condition": "IF accuracy and hallucination control are critical",
+            "architecture": "Hybrid",
+            "characteristic": "Hybrid hybrid architectures incorporate agent-based verification steps and multi-stage reasoning, reducing hallucinations through cross-checking"
+          },
+          {
+            "condition": "IF governance and auditability are required",
+            "architecture": "Hybrid",
+            "characteristic": "Hybrid agent-based architectures generate detailed execution traces showing reasoning steps, tool calls, and decision points"
+          }
+        ]
+      }
+    },
+    {
+      "architecturePair": [
+        "Agentic",
+        "Hybrid"
+      ],
+      "explanation": {
+        "summary": "Hybrid and Agentic differ by 0.50 total points under the provided constraints. This divergence stems primarily from differences in dimension scores where constraint weighting amplifies the impact of architectural characteristics.",
+        "dimensionComparisons": [],
+        "tradeoffAnalysis": [
+          {
+            "architecture": "Agentic",
+            "gains": [
+              "Real-time data access",
+              "Live API integration",
+              "Most current information available",
+              "Multi-source verification",
+              "Self-correction capabilities",
+              "Can validate outputs",
+              "Thorough problem-solving",
+              "Can optimize for correctness",
+              "Can optimize for complex tasks",
+              "Flexible cost-accuracy trade-offs",
+              "Complete execution traces",
+              "Full reasoning visibility",
+              "Tool call logs",
+              "Decision audit trail",
+              "Maximum flexibility",
+              "Can handle complex workflows",
+              "Adaptive behavior",
+              "Cutting-edge capabilities",
+              "Growing framework ecosystem"
+            ],
+            "sacrifices": [
+              "Dependent on external API availability",
+              "API rate limits and costs",
+              "Agent reasoning errors possible",
+              "Complex workflows harder to validate",
+              "Tool selection errors",
+              "Multiple sequential LLM calls",
+              "Tool execution delays",
+              "Highly variable latency",
+              "Highest per-query costs",
+              "Many LLM inference calls",
+              "Tool API costs",
+              "Retry and error handling overhead",
+              "Very large trace volumes",
+              "Complex trace analysis required",
+              "Highest complexity",
+              "Difficult debugging",
+              "Many integration points",
+              "Unpredictable behavior",
+              "Highest learning curve",
+              "Specialized skills required",
+              "Limited established patterns",
+              "Complex operational requirements"
+            ]
+          },
+          {
+            "architecture": "Hybrid",
+            "gains": [
+              "Real-time access to updated knowledge",
+              "Agent can verify information freshness",
+              "Multi-stage verification",
+              "Agent can cross-check outputs",
+              "Self-correction capabilities",
+              "Thorough reasoning process",
+              "Can optimize for accuracy over speed",
+              "Can optimize agent steps for complex workflows",
+              "Flexible cost-accuracy trade-offs",
+              "Detailed execution traces",
+              "Reasoning step visibility",
+              "Tool invocation logs",
+              "Decision point tracking",
+              "Support for complex workflows",
+              "Flexible tool integration",
+              "Adaptive reasoning",
+              "Powerful capabilities for complex tasks",
+              "Growing ecosystem of agent frameworks"
+            ],
+            "sacrifices": [
+              "Dependent on vector store update frequency",
+              "Additional complexity in agent tool integration",
+              "Increased complexity in verification logic",
+              "Potential for agent reasoning errors",
+              "Multiple sequential LLM calls",
+              "Variable latency based on reasoning depth",
+              "Tool execution overhead",
+              "Higher per-query costs",
+              "Multiple LLM inference calls",
+              "Agent orchestration overhead",
+              "Tool/function calling costs",
+              "Variable cost based on agent steps",
+              "Trace volume can be overwhelming",
+              "Requires trace analysis tooling",
+              "Agent design expertise required",
+              "Complex debugging",
+              "Orchestration logic maintenance",
+              "Tool integration overhead",
+              "Steeper learning curve",
+              "Agent debugging complexity",
+              "Specialized expertise required",
+              "Emerging best practices"
+            ]
+          }
+        ],
+        "conditionalGuidance": [
+          {
+            "condition": "IF cost per query is a primary constraint",
+            "architecture": "Agentic",
+            "characteristic": "Agentic highest costs due to multiple LLM calls, tool executions, and potential retry loops"
+          },
+          {
+            "condition": "IF accuracy and hallucination control are critical",
+            "architecture": "Agentic",
+            "characteristic": "Agentic agents can verify information through multiple sources and self-correction, but complex reasoning may introduce errors"
+          },
+          {
+            "condition": "IF governance and auditability are required",
+            "architecture": "Agentic",
+            "characteristic": "Agentic agentic systems provide comprehensive execution traces with all reasoning steps and tool calls"
+          },
+          {
+            "condition": "IF cost per query is a primary constraint",
+            "architecture": "Hybrid",
+            "characteristic": "Hybrid multiple LLM calls, agent orchestration, plus retrieval"
+          },
+          {
+            "condition": "IF accuracy and hallucination control are critical",
+            "architecture": "Hybrid",
+            "characteristic": "Hybrid hybrid architectures incorporate agent-based verification steps and multi-stage reasoning, reducing hallucinations through cross-checking"
+          },
+          {
+            "condition": "IF governance and auditability are required",
+            "architecture": "Hybrid",
+            "characteristic": "Hybrid agent-based architectures generate detailed execution traces showing reasoning steps, tool calls, and decision points"
+          }
+        ]
+      }
+    }
+  ],
+  "dimensionSummaries": [
+    {
+      "dimension": "Data Freshness",
+      "crossArchitectureComparison": "In Data Freshness, Agentic scores highest (9/10), while Fine-Tuned scores lowest (3/10). This dimension reflects the ability to access and incorporate recently updated information."
+    },
+    {
+      "dimension": "Accuracy & Hallucination Control",
+      "crossArchitectureComparison": "In Accuracy & Hallucination Control, Hybrid scores highest (8/10), while RAG scores lowest (6/10). This dimension reflects the ability to produce accurate outputs and minimize hallucinations."
+    },
+    {
+      "dimension": "Latency",
+      "crossArchitectureComparison": "In Latency, Fine-Tuned scores highest (9/10), while Agentic scores lowest (4/10). This dimension reflects response time and processing speed."
+    },
+    {
+      "dimension": "Cost Efficiency",
+      "crossArchitectureComparison": "In Cost Efficiency, RAG scores highest (7/10), while Agentic scores lowest (3/10). This dimension reflects per-query operational costs."
+    },
+    {
+      "dimension": "Governance & Auditability",
+      "crossArchitectureComparison": "In Governance & Auditability, Agentic scores highest (8/10), while Fine-Tuned scores lowest (3/10). This dimension reflects visibility into decision-making processes and audit trail quality."
+    },
+    {
+      "dimension": "Workflow Complexity",
+      "crossArchitectureComparison": "In Workflow Complexity, RAG scores highest (8/10), while Agentic scores lowest (3/10). This dimension reflects implementation and operational complexity (higher scores indicate lower complexity)."
+    },
+    {
+      "dimension": "Team & Ops Readiness",
+      "crossArchitectureComparison": "In Team & Ops Readiness, RAG scores highest (7/10), while Agentic scores lowest (4/10). This dimension reflects the learning curve and operational expertise required."
+    }
+  ]
+}

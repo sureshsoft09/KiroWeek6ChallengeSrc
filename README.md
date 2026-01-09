@@ -2,15 +2,11 @@
 
 A decision-support system that produces structured, neutral comparison data for GenAI architectural patterns **without making recommendations**.
 
----
-
 ## Overview
 
 The GenAI Architecture Referee evaluates four GenAI architectures across seven dimensions, applies constraint-based weighting, and generates **neutral explanations that articulate trade-offs** without prescriptive language.
 
 The system is designed to help users **choose**, not simply consume answers.
-
----
 
 ## Why This Project
 
@@ -25,16 +21,12 @@ The objective is not to answer *"Which architecture should I choose?"*, but to:
 
 The system intentionally acts as a **referee**, not an advisor.
 
----
-
 ## Architectures Evaluated
 
 - **RAG** (Retrieval-Augmented Generation)
 - **Fine-Tuned Models**
 - **Agentic AI**
 - **Hybrid** (RAG + Agents)
-
----
 
 ## Evaluation Dimensions
 
@@ -46,8 +38,6 @@ The system intentionally acts as a **referee**, not an advisor.
 6. **Workflow Complexity** – Implementation and maintenance effort  
 7. **Team & Ops Readiness** – Required skills and operational maturity  
 
----
-
 ## User Constraints
 
 The system accepts three constraint types that dynamically modify dimension weights:
@@ -57,8 +47,6 @@ The system accepts three constraint types that dynamically modify dimension weig
 - **Cost Sensitivity**: `low` | `medium` | `high`  
 
 These constraints **steer evaluation behavior** without altering base architecture characteristics.
-
----
 
 ## Key Features
 
@@ -80,8 +68,6 @@ These constraints **steer evaluation behavior** without altering base architectu
 - **Comprehensive Testing**  
   Property-based and unit tests validate correctness and neutrality.
 
----
-
 ## Non-Goals
 
 This system intentionally does **not**:
@@ -93,23 +79,17 @@ This system intentionally does **not**:
 
 Its purpose is **transparent comparison and trade-off explanation**.
 
----
-
 ## Installation
 
 ```bash
 npm install
 ```
 
----
-
 ## Build
 
 ```bash
 npm run build
 ```
-
----
 
 ## Test
 
@@ -123,26 +103,21 @@ Run tests in watch mode:
 npm run test:watch
 ```
 
----
-
 ## Usage
+After building the project, the compiled output is available in the `dist/` folder.
 
-### Basic Example
+### Run via Node (Built Output)
 
-```typescript
-import { compareArchitectures } from './src/index';
-
-const constraints = {
-  dataChangeFrequency: 'high',
-  accuracyRequirement: 'critical',
-  costSensitivity: 'high'
-};
-
-const result = compareArchitectures(constraints);
-console.log(JSON.stringify(result, null, 2));
+```bash
+node -e "
+  const { compareArchitectures } = require('./dist/index.js'); 
+  const constraints = { 
+            dataChangeFrequency: 'high', 
+            accuracyRequirement: 'critical', 
+            costSensitivity: 'high' }; 
+  const result = compareArchitectures(constraints); 
+  console.log(JSON.stringify(result, null, 2));"
 ```
-
----
 
 ## Output Structure
 
@@ -171,8 +146,6 @@ console.log(JSON.stringify(result, null, 2));
   "dimensionSummaries": [ ... ]
 }
 ```
-
----
 
 ## Project Structure
 
@@ -209,8 +182,6 @@ tests/
   ├── design.md
   └── tasks.md
 ```
-
----
 
 ## Design Principles
 
@@ -255,8 +226,6 @@ Core correctness properties validated with 100+ iterations:
 - Tasks reference requirements for full traceability
 - Spec-driven development from requirements → design → implementation
 
----
-
 ## Example Scenario: RAG vs Hybrid (High Cost Sensitivity)
 
 ### Scores
@@ -271,8 +240,6 @@ Core correctness properties validated with 100+ iterations:
 > "RAG exhibits a 1.15 point higher total score than Hybrid. Under high cost sensitivity, the Cost Efficiency dimension receives increased weight (0.25). RAG scores 7/10 on Cost Efficiency (1.75 weighted) while Hybrid scores 4/10 (1.00 weighted), contributing a 0.75 point difference. RAG trades lower accuracy for higher cost efficiency, while Hybrid gains improved accuracy but sacrifices cost efficiency."
 
 This text is not manually written and follows the templates and language validation rules defined in design.md.
-
----
 
 ## Testing
 
@@ -290,8 +257,6 @@ Test categories include:
 - JSON output structure
 - End-to-end execution
 
----
-
 ## Development Methodology
 
 ### Spec-Driven Development
@@ -301,8 +266,6 @@ Test categories include:
 3. **Tasks** – Incremental implementation plan
 4. **Implementation** – Strict TypeScript
 5. **Testing** – Property-based + unit tests
-
----
 
 ## Extensibility
 
@@ -319,12 +282,8 @@ Test categories include:
 3. Update weighting config
 4. Update tests
 
----
-
 ## Contributing
 
 This is a demonstration project built using spec-driven development for an architectural decision-support use case.
 
 Questions or suggestions are welcome via issues.
-
----
